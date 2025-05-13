@@ -29,7 +29,7 @@ Route::middleware('throttle:api')->group(function () {
             Route::post('/logout', [AuthController::class, 'logout']);
 
             // User management - requires admin role
-            Route::middleware('role:admin')->group(function () {
+            Route::middleware('role:super-admin')->group(function () {
                 Route::apiResource('users', UserController::class);
                 Route::post('/users/{id}/roles', [UserController::class, 'assignRoles']);
                 Route::post('/users/{id}/permissions', [UserController::class, 'assignPermissions']);
@@ -37,7 +37,7 @@ Route::middleware('throttle:api')->group(function () {
             });
 
             // Role management - requires admin role with manage-roles permission
-            Route::middleware(['role:admin', 'permission:manage-roles'])->group(function () {
+            Route::middleware(['role:super-admin', 'permission:manage-roles'])->group(function () {
                 Route::apiResource('roles', RoleController::class);
                 Route::post('/roles/{id}/permissions', [RoleController::class, 'assignPermissions']);
             });
@@ -46,6 +46,15 @@ Route::middleware('throttle:api')->group(function () {
             Route::middleware('role:super-admin')->group(function () {
                 Route::apiResource('permissions', PermissionController::class);
             });
+
+
+            // // Account Routes
+            // Route::middleware(['role:admin', 'permission:manage-roles'])->group(function () {
+            //     Route::apiResource('roles', RoleController::class);
+            //     Route::post('/roles/{id}/permissions', [RoleController::class, 'assignPermissions']);
+            // });
+
+
         });
     });
 });
