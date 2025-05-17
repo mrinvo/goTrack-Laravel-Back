@@ -43,6 +43,7 @@ trait SendRequestTrait
 
 
             // Return the JSON-decoded response.
+            dd($ChargeRequest);
             return $ChargeRequest;
 
         } catch (RequestException $e) {
