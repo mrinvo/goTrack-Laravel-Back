@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\V1\AuthController;
 use App\Http\Controllers\API\V1\PermissionController;
+use App\Http\Controllers\API\V1\ReportingController;
 use App\Http\Controllers\API\V1\RoleController;
 use App\Http\Controllers\API\V1\UserController;
 use Illuminate\Support\Facades\Route;
@@ -46,6 +47,12 @@ Route::middleware('throttle:api')->group(function () {
             Route::middleware('role:super-admin')->group(function () {
                 Route::apiResource('permissions', PermissionController::class);
             });
+
+            // Send API Request
+            Route::middleware('role:super-admin')->group(function () {
+                Route::post('/request', [ReportingController::class, 'fetch']);
+            });
+
 
 
             // // Account Routes

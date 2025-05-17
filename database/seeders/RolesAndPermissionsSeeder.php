@@ -42,6 +42,10 @@ class RolesAndPermissionsSeeder extends Seeder
 
             // Add other permissions as needed
             'manage-settings',
+
+            // Reporting Permissions
+
+            'generate-manual-reports'
         ];
 
         foreach ($permissions as $permission) {
