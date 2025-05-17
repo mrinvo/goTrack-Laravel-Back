@@ -36,7 +36,7 @@ class ReportingController extends Controller
 
 
         // Check if a redirect URL is provided in the response and redirect the user if available.
-        return $ $response = $this->ExternalAPIRepository->SendRequest($request);
+        return $response = $this->ExternalAPIRepository->SendRequest($request);
     }
 
 }
